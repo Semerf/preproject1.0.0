@@ -12,7 +12,7 @@ public interface UserRepository extends CrudRepository<User, Integer> {
 
     void deleteAll();
 
-    void deleteUserById(Integer id);
+    User deleteUserById(Integer id);
 
     User findUserById(Integer id);
 

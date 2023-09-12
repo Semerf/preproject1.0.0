@@ -18,23 +18,25 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User addUser(UserPostDto dto) {
+    public UserPostDto addUser(UserPostDto dto) {
         User user = new User(dto);
         userRepository.save(user);
-        return user;
+        return new UserPostDto(user);
     }
 
     public void deleteAll() {
         userRepository.deleteAll();
     }
 
-    public void deleteById(Integer id) {
-        userRepository.deleteUserById(id);
+    public UserPostDto deleteById(Integer id) {
+        User user = userRepository.deleteUserById(id);
+        return new UserPostDto(user);
     }
 
-    public void updateUserById(Integer id, UserPostDto dto) {
+    public UserPostDto updateUserById(Integer id, UserPostDto dto) {
         User user = userRepository.findUserById(id);
         user.update(dto);
         userRepository.save(user);
+        return new UserPostDto(user);
     }
 }

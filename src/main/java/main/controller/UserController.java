@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Transactional
@@ -22,33 +23,37 @@ public class UserController {
     private UserService userService;
 
     @ApiOperation("Получение всех пользователей")
-    @GetMapping("all")
-    public List<User> getAllUsers() {
-        return userService.getAllUsers();
+    @GetMapping()
+    public List<UserPostDto> getAllUsers() {
+        List<UserPostDto> userPostDtos = new ArrayList<>();
+        for (User user : userService.getAllUsers()) {
+            userPostDtos.add(new UserPostDto(user));
+        }
+        return userPostDtos;
     }
 
     @ApiOperation("Добавление пользователя")
-    @PostMapping("add")
-    public User addUser(@RequestParam String firstName, @RequestParam String lastName, @RequestParam String email, @RequestParam String userName) {
-        UserPostDto dto = new UserPostDto(firstName, lastName, email, userName);
+    @PostMapping()
+    public UserPostDto addUser(@RequestBody UserPostDto dto) {
         return userService.addUser(dto);
     }
 
     @ApiOperation("Удаление всех пользователей")
-    @DeleteMapping("deleteAll")
-    public void deleteUsers() {
+    @DeleteMapping()
+    public String deleteUsers() {
         userService.deleteAll();
+        return "Пользователи удалены";
     }
+
     @ApiOperation("Удаление пользователя по его ID")
-    @DeleteMapping("delete/{id}")
-    public void deleteUser(@PathVariable Integer id) {
-        userService.deleteById(id);
+    @DeleteMapping("/{id}")
+    public String deleteUser(@PathVariable Integer id) {
+        return "Пользователь " + userService.deleteById(id) + " удален";
     }
 
     @ApiOperation("Обновление информации пользователя по его ID")
-    @PostMapping("update/{id}")
-    public void updateUser(@PathVariable Integer id, @RequestParam String firstName, @RequestParam String lastName, @RequestParam String email, @RequestParam String userName) {
-        UserPostDto dto = new UserPostDto(firstName, lastName, email, userName);
-        userService.updateUserById(id, dto);
+    @PostMapping("/{id}")
+    public UserPostDto updateUser(@PathVariable Integer id, @RequestBody UserPostDto dto) {
+        return userService.updateUserById(id, dto);
     }
 }
