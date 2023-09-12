@@ -1,7 +1,20 @@
 package main.repository;
 
+import main.models.User;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
-public interface UserRepository {
+public interface UserRepository extends CrudRepository<User, Integer> {
+    List<User> findAll();
+
+    void deleteAll();
+
+    void deleteUserById(Integer id);
+
+    User findUserById(Integer id);
+
+
 }
