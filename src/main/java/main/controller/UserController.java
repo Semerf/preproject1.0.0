@@ -5,8 +5,6 @@ import lombok.RequiredArgsConstructor;
 import main.models.UserPostDto;
 import main.models.UserResponseDto;
 import main.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +16,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
-@Transactional
 @RestController
 @RequestMapping("/user-api/")
 @RequiredArgsConstructor
@@ -47,6 +44,7 @@ public class UserController {
     @ApiOperation("Удаление пользователя по его ID")
     @DeleteMapping("/{id}")
     public String deleteUser(@PathVariable Integer id) {
+        System.out.println(id);
         return userService.deleteById(id);
     }
 
