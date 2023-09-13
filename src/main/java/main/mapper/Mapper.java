@@ -1,6 +1,8 @@
 package main.mapper;
 
-import main.models.*;
+import main.models.User;
+import main.models.UserPostDto;
+import main.models.UserResponseDto;
 import org.springframework.stereotype.Component;
 
 @Component

@@ -1,11 +1,9 @@
 package main.models;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.Data;
 
-@ToString
-@Getter
+@Data
 @AllArgsConstructor
 public class UserResponseDto {
     private final String firstName;

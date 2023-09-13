@@ -2,13 +2,19 @@ package main.controller;
 
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
-import main.models.User;
 import main.models.UserPostDto;
 import main.models.UserResponseDto;
 import main.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -16,11 +22,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/user-api/")
 @RequiredArgsConstructor
-
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
     @ApiOperation("Получение всех пользователей")
     @GetMapping()
