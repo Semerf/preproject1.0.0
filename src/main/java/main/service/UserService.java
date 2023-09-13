@@ -17,14 +17,12 @@ import java.util.stream.Collectors;
 public class UserService {
     private final Mapper mapper = new Mapper();
     private final UserRepository userRepository;
-
-    @Transactional
+    @Transactional(readOnly = true)
     public List<UserResponseDto> getAllUsers() {
         return userRepository.findAll().stream()
                 .map(mapper::toUserResponseDto)
                 .collect(Collectors.toList());
     }
-
     @Transactional
     public UserResponseDto addUser(UserPostDto dto) {
         User user = mapper.toUser(dto);
