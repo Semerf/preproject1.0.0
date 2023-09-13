@@ -3,6 +3,7 @@ package main.models;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +12,6 @@ import javax.persistence.Id;
 
 @Entity(name = "users")
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 public class User {
     @Id
@@ -26,17 +26,19 @@ public class User {
 
     private String userName;
 
-    public User(UserPostDto userPostDto) {
-        this.firstName = userPostDto.getFirstName();
-        this.lastName = userPostDto.getLastName();
-        this.email = userPostDto.getEmail();
-        this.userName = userPostDto.getUserName();
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public void update(UserPostDto userPostDto) {
-        this.firstName = userPostDto.getFirstName();
-        this.lastName = userPostDto.getLastName();
-        this.email = userPostDto.getEmail();
-        this.userName = userPostDto.getUserName();
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }

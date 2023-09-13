@@ -15,6 +15,4 @@ public interface UserRepository extends CrudRepository<User, Integer> {
     User deleteUserById(Integer id);
 
     User findUserById(Integer id);
-
-
 }

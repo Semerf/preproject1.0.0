@@ -7,14 +7,10 @@ import lombok.ToString;
 @ToString
 @Getter
 @AllArgsConstructor
-public class UserPostDto {
-
+public class UserResponseDto {
     private final String firstName;
 
     private final String lastName;
 
-    private final String email;
-
     private final String userName;
-
 }

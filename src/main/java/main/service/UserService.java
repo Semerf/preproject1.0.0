@@ -1,42 +1,48 @@
 package main.service;
 
 import lombok.RequiredArgsConstructor;
+import main.mapper.Mapper;
 import main.models.User;
 import main.models.UserPostDto;
+import main.models.UserResponseDto;
 import main.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class UserService {
-
+    private final Mapper mapper = new Mapper();
     private final UserRepository userRepository;
 
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
+    public List<UserResponseDto> getAllUsers() {
+        return userRepository.findAll().stream()
+                .map(mapper::toUserResponseDto)
+                .collect(Collectors.toList());
     }
 
-    public UserPostDto addUser(UserPostDto dto) {
-        User user = new User(dto);
+    public UserResponseDto addUser(UserPostDto dto) {
+        User user = mapper.toUser(dto);
         userRepository.save(user);
-        return new UserPostDto(user);
+        return mapper.toUserResponseDto(user);
     }
 
-    public void deleteAll() {
+    public String deleteAll() {
         userRepository.deleteAll();
+        return "Пользователи удалены";
     }
 
-    public UserPostDto deleteById(Integer id) {
+    public String deleteById(Integer id) {
         User user = userRepository.deleteUserById(id);
-        return new UserPostDto(user);
+        return "Пользователь " + mapper.toUserResponseDto(user) + " удален";
     }
 
-    public UserPostDto updateUserById(Integer id, UserPostDto dto) {
-        User user = userRepository.findUserById(id);
-        user.update(dto);
+    public UserResponseDto updateUserById(Integer id, UserPostDto dto) {
+        User user = mapper.updateUser(userRepository.findUserById(id), dto);
         userRepository.save(user);
-        return new UserPostDto(user);
+        return mapper.toUserResponseDto(user);
     }
 }

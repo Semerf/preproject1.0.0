@@ -4,12 +4,12 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import main.models.User;
 import main.models.UserPostDto;
+import main.models.UserResponseDto;
 import main.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Transactional
@@ -24,36 +24,31 @@ public class UserController {
 
     @ApiOperation("Получение всех пользователей")
     @GetMapping()
-    public List<UserPostDto> getAllUsers() {
-        List<UserPostDto> userPostDtos = new ArrayList<>();
-        for (User user : userService.getAllUsers()) {
-            userPostDtos.add(new UserPostDto(user));
-        }
-        return userPostDtos;
+    public List<UserResponseDto> getAllUsers() {
+        return userService.getAllUsers();
     }
 
     @ApiOperation("Добавление пользователя")
     @PostMapping()
-    public UserPostDto addUser(@RequestBody UserPostDto dto) {
+    public UserResponseDto addUser(@RequestBody UserPostDto dto) {
         return userService.addUser(dto);
     }
 
     @ApiOperation("Удаление всех пользователей")
     @DeleteMapping()
     public String deleteUsers() {
-        userService.deleteAll();
-        return "Пользователи удалены";
+        return userService.deleteAll();
     }
 
     @ApiOperation("Удаление пользователя по его ID")
     @DeleteMapping("/{id}")
     public String deleteUser(@PathVariable Integer id) {
-        return "Пользователь " + userService.deleteById(id) + " удален";
+        return userService.deleteById(id);
     }
 
     @ApiOperation("Обновление информации пользователя по его ID")
-    @PostMapping("/{id}")
-    public UserPostDto updateUser(@PathVariable Integer id, @RequestBody UserPostDto dto) {
+    @PutMapping("/{id}")
+    public UserResponseDto updateUser(@PathVariable Integer id, @RequestBody UserPostDto dto) {
         return userService.updateUserById(id, dto);
     }
 }
