@@ -1,4 +1,4 @@
-package main.controller;
+package main.controllers;
 
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user-api/")
+@RequestMapping("/admin/")
 @RequiredArgsConstructor
-public class UserController {
+public class AdminController {
 
     private final UserService userService;
 
@@ -31,7 +31,7 @@ public class UserController {
 
     @ApiOperation("Добавление пользователя")
     @PostMapping()
-    public UserResponseDto addUser(@RequestBody UserPostDto dto) {
+    public UserPostDto addUser(@RequestBody UserPostDto dto) {
         return userService.addUser(dto);
     }
 

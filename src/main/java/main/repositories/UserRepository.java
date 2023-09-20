@@ -1,4 +1,4 @@
-package main.repository;
+package main.repositories;
 
 import main.models.User;
 import org.springframework.data.repository.CrudRepository;
@@ -15,4 +15,6 @@ public interface UserRepository extends CrudRepository<User, Integer> {
     void deleteById(Integer id);
 
     User findUserById(Integer id);
+
+    User findByUsername(String username);
 }

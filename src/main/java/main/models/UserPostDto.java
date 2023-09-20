@@ -13,6 +13,8 @@ public class UserPostDto {
 
     private final String email;
 
-    private final String userName;
+    private final String username;
+
+    private final String password;
 
 }
