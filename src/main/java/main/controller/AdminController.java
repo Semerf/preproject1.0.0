@@ -1,9 +1,9 @@
-package main.controllers;
+package main.controller;
 
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
-import main.models.UserPostDto;
-import main.models.UserResponseDto;
+import main.model.UserPostDto;
+import main.model.UserResponseDto;
 import main.service.UserService;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;

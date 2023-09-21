@@ -1,11 +1,11 @@
 package main.service;
 
 import lombok.RequiredArgsConstructor;
-import main.components.Mapper;
-import main.models.User;
-import main.models.UserPostDto;
-import main.models.UserResponseDto;
-import main.repositories.UserRepository;
+import main.mapper.UserMapper;
+import main.entity.User;
+import main.model.UserPostDto;
+import main.model.UserResponseDto;
+import main.repository.UserRepository;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class UserService implements UserDetailsService {
-    private final Mapper mapper;
+    private final UserMapper mapper;
 
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
@@ -55,8 +55,8 @@ public class UserService implements UserDetailsService {
     }
 
     @Transactional(readOnly = true)
-    public User findByUsername(String username){
-        return  userRepository.findByUsername(username);
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 
     @Transactional

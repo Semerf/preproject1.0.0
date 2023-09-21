@@ -1,4 +1,4 @@
-package main.controllers;
+package main.controller;
 
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -6,8 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import main.models.JwtRequest;
-import main.models.UserPostDto;
+import main.model.JwtRequest;
+import main.model.UserPostDto;
 import main.service.RegisterService;
 
 @RestController

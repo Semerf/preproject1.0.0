@@ -1,15 +1,14 @@
-package main.components;
+package main.mapper;
 
 import lombok.RequiredArgsConstructor;
-import main.models.User;
-import main.models.UserPostDto;
-import main.models.UserResponseDto;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import main.entity.User;
+import main.model.UserPostDto;
+import main.model.UserResponseDto;
 import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
 @Component
-public class Mapper {
+public class UserMapper {
 
     public UserResponseDto toUserResponseDto(User user) {
         return new UserResponseDto(user.getFirstName(), user.getLastName(), user.getUsername());

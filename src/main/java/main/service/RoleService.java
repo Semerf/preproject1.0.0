@@ -2,8 +2,8 @@ package main.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import main.models.Role;
-import main.repositories.RoleRepository;
+import main.entity.Role;
+import main.repository.RoleRepository;
 
 @Service
 @RequiredArgsConstructor

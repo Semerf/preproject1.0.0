@@ -1,7 +1,6 @@
-package main.config;
+package main.security;
 
 import lombok.RequiredArgsConstructor;
-import main.components.JwtTokenUtils;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;

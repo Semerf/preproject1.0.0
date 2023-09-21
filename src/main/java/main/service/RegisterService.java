@@ -1,40 +1,27 @@
 package main.service;
 
 import lombok.RequiredArgsConstructor;
-import main.components.Mapper;
+import main.mapper.UserMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import main.models.JwtRequest;
-import main.models.JwtResponse;
-import main.models.UserPostDto;
-import main.models.UserResponseDto;
-import main.models.User;
-import main.repositories.RoleRepository;
-import main.repositories.UserRepository;
-import main.components.JwtTokenUtils;
-
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
+import main.model.JwtRequest;
+import main.model.JwtResponse;
+import main.model.UserPostDto;
+import main.model.UserResponseDto;
+import main.entity.User;
+import main.security.JwtTokenUtils;
 
 @Service
 @RequiredArgsConstructor
 public class RegisterService {
     private final UserService userService;
-    private final Mapper mapper;
+    private final UserMapper mapper;
     private final JwtTokenUtils jwtTokenUtils;
     private final AuthenticationManager authenticationManager;
 
